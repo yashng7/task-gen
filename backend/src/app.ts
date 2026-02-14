@@ -141,7 +141,7 @@ app.get("/api/specs/:id", async (req, res) => {
 
 app.get("/api/specs", async (req, res) => {
   try {
-    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 5, 1), 20);
+    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 5, 1), 100);
     const result = await db.select().from(specs).orderBy(desc(specs.createdAt)).limit(limit);
 
     const specsWithCounts = await Promise.all(

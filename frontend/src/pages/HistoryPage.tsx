@@ -9,7 +9,7 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(true);
 
   const loadSpecs = () => {
-    api.getSpecs().then((data) => {
+    api.getSpecs(50).then((data) => {
       setSpecs(data.specs);
       setLoading(false);
     }).catch(() => setLoading(false));
@@ -35,6 +35,7 @@ export default function HistoryPage() {
     <div className="history-page-container">
       <div className="page-header">
         <h1>Recent Projects</h1>
+        <p style={{ color: "#64748b", fontSize: "0.9rem" }}>{specs.length} projects</p>
       </div>
 
       {specs.length === 0 ? (
@@ -42,32 +43,34 @@ export default function HistoryPage() {
           No projects yet. <span className="link-text" onClick={() => navigate('/create')}>Create one?</span>
         </div>
       ) : (
-        specs.map((spec) => (
-          <div
-            key={spec.id}
-            className="history-item"
-            onClick={() => navigate(`/spec/${spec.id}`)}
-          >
-            <div className="history-info">
-              <div className="history-title">
-                {spec.goal}
+        <div className="history-list">
+          {specs.map((spec) => (
+            <div
+              key={spec.id}
+              className="history-item"
+              onClick={() => navigate(`/spec/${spec.id}`)}
+            >
+              <div className="history-info">
+                <div className="history-title">
+                  {spec.goal}
+                </div>
+                <div className="history-meta">
+                  {new Date(spec.createdAt).toLocaleDateString()} • {spec.taskCount} items • {spec.templateType}
+                </div>
               </div>
-              <div className="history-meta">
-                {new Date(spec.createdAt).toLocaleDateString()} • {spec.taskCount} items • {spec.templateType}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                <button
+                  className="btn btn-sm"
+                  style={{ background: "#450a0a", color: "#f87171" }}
+                  onClick={(e) => handleDelete(e, spec.id)}
+                >
+                  Delete
+                </button>
+                <span className="history-arrow">→</span>
               </div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <button
-                className="btn btn-sm"
-                style={{ background: "#450a0a", color: "#f87171" }}
-                onClick={(e) => handleDelete(e, spec.id)}
-              >
-                Delete
-              </button>
-              <span className="history-arrow">→</span>
-            </div>
-          </div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );

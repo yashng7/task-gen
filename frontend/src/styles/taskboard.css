@@ -1,6 +1,6 @@
 /* --- TASKBOARD STYLES --- */
 .create-page-container,
-.history-page-container,
+/* .history-page-container, */
 .status-page-container {
   max-width: 700px;
   margin: 0 auto;
@@ -256,4 +256,11 @@
   margin-bottom: 1rem;
   border-bottom: 1px solid var(--border-light);
   padding-bottom: 0.5rem;
+}
+
+
+.history-page-container {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-bottom: 2rem;
 }

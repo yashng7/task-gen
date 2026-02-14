@@ -32,7 +32,7 @@ export const api = {
       body: JSON.stringify(data),
     }),
 
-  getSpecs: () => request<{ specs: any[] }>("/api/specs"),
+  getSpecs: (limit: number = 20) => request<{ specs: any[] }>(`/api/specs?limit=${limit}`),
 
   getSpec: (id: string) => request<any>(`/api/specs/${id}`),
 
