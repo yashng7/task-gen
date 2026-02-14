@@ -43,7 +43,7 @@ export default function HomePage() {
     <div className="landing-page">
       {/* HERO SECTION */}
       <section className="hero-section">
-        <div className="version-badge">v2.0 Now Available</div>
+        <div className="version-badge">v1.0 Now Available</div>
         <h1 className="hero-title">
           Stop writing tickets.<br />
           <span className="text-subtle">Start building.</span>
