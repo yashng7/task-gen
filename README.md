@@ -1,4 +1,4 @@
-# TasksGene — Mini Planning Tool
+# TasksGen — Mini Planning Tool
 
 A web application that generates user stories, engineering tasks, and risk
 assessments from a simple project spec form.
@@ -33,8 +33,8 @@ assessments from a simple project spec form.
 ### 1. Clone the repository
 
 ```bash
-git clone 
-cd tasks-generator
+git clone https://github.com/yashng7/task-gen.git
+cd task-gen
 ```
 
 ### 2. Configure environment
