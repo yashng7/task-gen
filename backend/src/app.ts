@@ -4,7 +4,7 @@ import { sql, eq, desc } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "./db";
 import { specs, tasks } from "./db/schema";
-import { generateTasks } from "./engine/generator";
+import { generateAllTasks } from "./engine/generator";
 
 const app = express();
 const startTime = Date.now();
@@ -93,7 +93,7 @@ app.post("/api/specs", async (req, res) => {
       templateType: parsed.data.templateType,
     }).returning();
 
-    const generatedTasks = await generateTasks({
+    const generatedTasks = await generateAllTasks({
       specId: spec.id,
       goal: parsed.data.goal,
       users: parsed.data.users,
